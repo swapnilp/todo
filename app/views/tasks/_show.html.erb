@@ -1,0 +1,46 @@
+<div id="tasks">
+  <h1><%= @task.name %></h1>
+    <div class="control-group">
+      <label class="control-label" for="inputEmail">Name</label>
+      <div class="controls">
+	<label class="control-label" for="inputEmail"> <%= @task.name %></label>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="inputPassword">Start Date</label>
+      <div class="controls">
+	<label class="control-label" for="inputEmail"><%= @task.start_date %> </label>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="inputPassword">End Date</label>
+      <div class="controls">
+	<label class="control-label" for="inputEmail"><%= @task.end_date %></label>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="inputPassword">Description</label>
+      <div class="controls">
+	<label class="control-label" for="inputEmail"><%= @task.description %></label>
+      </div>
+    </div>
+    <div class="control-group">
+      <div class="controls">
+	<%= link_to "Edit", edit_task_path(@task), :class => "btn", :remote => :true %>
+	
+	<% if @task.is_subtasks? %>
+	<%= link_to "cancle", task_path(@task.master_task), :class=> "btn", :remote => :true %>
+	<% else %> 
+        <%= link_to "cancle", tasks_path, :class => "btn", :remote => true  %>
+	<% end %>
+      </div>
+    </div>
+    <% if !@task.is_subtasks? %>
+    <div id="sub_tasks">
+        <% @tasks = @task.sub_task %>
+        <%= render "list" %>
+	<%= link_to "Add sub Tasks", new_task_path(:master_id => @task.id), :remote => :true, :class => "btn" %>
+    </div>
+    <% end %>
+</div>

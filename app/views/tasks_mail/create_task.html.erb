@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>Welcome to Todo event management, <%= @user.email %></h1>
+    <p>
+      You have successfully created to Todo event tasks,
+      <strong> Task name</strong><span><%= @task.name %></span>
+      <strong> Task Description</strong><span><%= @task.description %></span>
+      <strong> Task Start Date</strong><span><%= @task.start_date %></span>
+      <strong> Task End Date</strong><span><%= @task.end_date %></span>
+    </p>
+    <p>Thanks for joining and have a great day!</p>
+  </body>
+</html>

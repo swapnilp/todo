@@ -1,0 +1,43 @@
+<div id="tasks">
+  <h1><%= @task.master_task_id.nil? ? "New Task": "New Sub Task" %></h1>
+  <%= form_for @task, :remote => :true,  :html => { :class => "form_horizontal", :id => "new_post" } do |f|%>
+    <% if !@task.master_task_id.nil? %>
+      <%= f.hidden_field(:master_task_id)%>
+    <% end %>
+    <div class="control-group">
+      <label class="control-label" for="inputEmail">Name</label>
+      <div class="controls">
+	<%= f.text_field :name %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="inputPassword">Start Date</label>
+      <div class="controls">
+	<%= f.text_field :start_date %>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="inputPassword">End Date</label>
+      <div class="controls">
+        <%= f.text_field :end_date %>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="inputPassword">Description</label>
+      <div class="controls">
+        <%= f.text_field :description %>
+      </div>
+    </div>
+    <div class="control-group">
+      <div class="controls">
+	<button type="submit" class="btn">Submit</button>
+	<% if @task.is_subtasks? %>
+	  <%= link_to "cancle", task_path(@task.master_task), :remote => :true, :class => "btn" %>
+	<% else %>
+	  <%= link_to "cancel", tasks_path, :class => "btn", :remote => :true  %>
+	<% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,20 @@
+<table class="table table-sttripe">
+  <thead>
+    <tr>
+      <th width=10%>Index</th>
+      <th width=30%>Name</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Edit</th>
+    </tr>
+  </thead>
+  <%- @tasks.each_with_index do |task, index| %>
+    <tr>
+      <td>index</td>
+      <td><%= link_to task.name.to_s, task_path(task), :remote => :true %></td>
+      <td><%= task.start_date %></td>
+      <td><%= task.end_date %></td>
+      <td><%= link_to "edit", edit_task_path(task), :remote => :true  %></td>
+    </tr>
+  <%- end %>
+</table>
