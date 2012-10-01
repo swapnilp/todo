@@ -22,26 +22,26 @@ $(function(){
     <% end %>
     
     <div class="control-group">
-      <label class="control-label" for="inputEmail">Name</label>
+      <label class="control-label">Name</label>
       <div class="controls">
 	<%= f.text_field :name, :required => :true%>
       </div>
     </div>
 
     <div class="control-group">
-      <label class="control-label" for="inputPassword">Start Date</label>
+      <label class="control-label">Start Date</label>
       <div class="controls">
 	<%= f.text_field :start_date, :required => :true, :class => 'datepicker' %>
       </div>
     </div>
     <div class="control-group">
-      <label class="control-label" for="inputPassword">End Date</label>
+      <label class="control-label">End Date</label>
       <div class="controls">
         <%= f.text_field :end_date, :required => :true , :class => 'datepicker'%>
       </div>
     </div>
     <div class="control-group">
-      <label class="control-label" for="inputPassword">Description</label>
+      <label class="control-label">Description</label>
       <div class="controls">
         <%= f.text_field :description, :required => :true %>
       </div>
