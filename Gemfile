@@ -13,6 +13,9 @@ gem 'therubyracer'
 gem 'bootstrap-datepicker-rails'
 gem 'json'
 gem 'cancan'
+gem 'whenever', :require => false
+gem 'bootstrap-datepicker-rails'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

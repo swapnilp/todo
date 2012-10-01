@@ -13,19 +13,20 @@ class Task < ActiveRecord::Base
   validates :start_date, :presence => true
   validates :end_date, :presence => true
   
-  before_validation :validates_date
-  after_save :send_mail
+  before_create :validates_date
+  before_validation :validates_master_date, :if => :is_subtasks?
+  after_create :send_mail
   
   def validates_date
-    errors.add(:start_date, 'is not valid') if Date.today > self[:start_date]
-    errors.add(:end_date, 'is not valid') if self[:start_date] > self[:end_date]
+    errors.add(:start_date, "must be greater than equal to #{Date.today}") if Date.today > self[:start_date]
+    errors.add(:end_date, "is not less than start date #{self[:start_date]}") if self[:start_date] > self[:end_date]
     validates_master_date unless self[master_task_id].nil?
   end
 
   def validates_master_date
       master_task = Task.where(:id => self[:master_task_id]).first
-      errors.add(:start_date, 'is not in master task date range') if self[:start_date] > master_task.start_date
-      errors.add(:end_date, 'is not in master task range') if self[:end_date] < master_task.end_date
+      errors.add(:start_date, 'is not in master task date range') if self[:start_date] < master_task.start_date
+      errors.add(:end_date, 'is not in master task range') if self[:end_date] > master_task.end_date
   end
 
   def is_subtasks?

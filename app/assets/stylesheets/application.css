@@ -14,5 +14,6 @@
  *= require bootstrap.min
  *= require bootstrap-responsive
  *= require bootstrap
+ *= require bootstrap-datepicker
  *= require_tree .
 */

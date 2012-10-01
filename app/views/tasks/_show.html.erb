@@ -30,9 +30,9 @@
 	<%= link_to "Edit", edit_task_path(@task), :class => "btn", :remote => :true %>
 	
 	<% if @task.is_subtasks? %>
-	<%= link_to "cancle", task_path(@task.master_task), :class=> "btn", :remote => :true %>
+	<%= link_to "cancel", task_path(@task.master_task), :class=> "btn", :remote => :true %>
 	<% else %> 
-        <%= link_to "cancle", tasks_path, :class => "btn", :remote => true  %>
+        <%= link_to "cancel", tasks_path, :class => "btn", :remote => true  %>
 	<% end %>
       </div>
     </div>

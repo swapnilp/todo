@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   def index
     respond_to do |format|
-      @tasks = Task.master_tasks current_user.id
+      @tasks = Task.master_tasks.where(:user_id => current_user.id)
       format.json { render :json => @tasks }
       format.js
       format.html 
@@ -9,7 +9,6 @@ class TasksController < ApplicationController
   end
   
   def new
-
     @task = Task.new
     @task.master_task_id = params["master_id"]
     respond_to do |format|
@@ -23,7 +22,7 @@ class TasksController < ApplicationController
       @task.user_id = current_user.id
       @task.master_task_id = params[:master_task_id] if !params[:master_task_id].nil?
       @task.status = "event created"
-      if @task.save!
+      if @task.save
       puts @task.master_task_id.nil?
         redirect_to :action => "index" if @task.master_task_id.nil?
 	redirect_to task_path(@task.master_task) if !@task.master_task_id.nil?
